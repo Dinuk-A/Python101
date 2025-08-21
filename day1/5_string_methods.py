@@ -34,8 +34,6 @@ print(fn[1:4]) # letter in index 4(5th letter) is excluded === (1 to 3)
 print(fn[6:15]) # letter in index 15(16th letter) is excluded === (6 to 11)
 print(fn[2:])  # if the 2nd param is empty, fetch till last value (-1st index)
 print(fn[:5])  # if first param is empty, fetch from first value (0th index)
-
-
  
 print('Dinuka' in fn)
 print('dinuka' in fn)
