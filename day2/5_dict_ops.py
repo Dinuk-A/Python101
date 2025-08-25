@@ -49,3 +49,6 @@ thisdict.popitem() #removes the last inserted item
 # if "color" key exists, returns its value; otherwise, adds "color": "white" and returns "white"
 x = car.setdefault("color", "white")
 print(x)  
+
+
+# python day2/5_dict_ops.py
