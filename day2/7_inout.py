@@ -14,16 +14,17 @@
  # this will give 'class str' if removed the 'int' part ✅
 #print("You will be",age+1,"years old next year")
 
-#what happens when a user entered a wrong typed input here? ❌
-
+#what happens when a user entered a wrong typed input here? 
+# will gives a valueError ,  so use inside a try-except , use 'except ValueError'
 
 #output by print
 #also discussed in day1 > 5_string_methods  ✅
 
-#placeholders with {} ❌
+#placeholders with .format ✅
 a = 123
-b= "random"
-print('value of a is {} and b is {}',format(a,b))
+b= "cat"
+print('value of a is {} and b is {}'.format(a,b))
+print('value of a is {} and b is {}'.format(b,a))
 
 #print sevaral vars ✅
 name = "cat"
@@ -34,10 +35,14 @@ print(-123.0,name,25*3,age)
 print(-123.0,name,25*3,age, sep="X")
 print(-123.0,name,25*3,age, sep="--")
 
-#end ❌
+#end = what gets printed at the end of the output. ✅
+#by default its a new line( \n) , using this will print the next print in same line
 print(-123.0,name,25*3,age, sep="--",end="$")
 
 #star patterns ❌
+
+
+# python 7_inout.py
 
 
 
