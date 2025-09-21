@@ -108,6 +108,9 @@ def placeholderFunction():
 
 #more advanced function topics (not covered here) ✅
 #positional vs keyword arguments
-#lambda functions (in day 4) 
+#recursion fns
+#decorators
+
+#lambda functions (in day 4)  ✅
 
 # python 1_fns.py
