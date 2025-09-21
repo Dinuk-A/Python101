@@ -45,7 +45,7 @@ for i in range(5):
         print(i)
         
         
-# WHILE LOOPS ARE EXPLAINED IN DAY 1 too> day1/4_conditions_if_while.py 
+# WHILE LOOPS ARE EXPLAINED IN DAY 1 too> day1/4_conditions_if_while.py ✅
 
 # ex 1 basic while loop
 count = 0

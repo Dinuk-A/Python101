@@ -39,8 +39,6 @@ print(-123.0,name,25*3,age, sep="--")
 #by default its a new line( \n) , using this will print the next print in same line
 print(-123.0,name,25*3,age, sep="--",end="$")
 
-#star patterns ❌
-
 
 # python 7_inout.py
 
