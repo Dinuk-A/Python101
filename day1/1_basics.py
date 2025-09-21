@@ -25,7 +25,7 @@ print(x)  # This will print the new value of x, which is now a string
 
 # multi line comment ✅
 """
-Python allows the use of triple-quoted strings ('''comment''' or """comment""") 
+Python allows the use of triple-quoted strings ('''comment''' or \"\"\"comment\"\"\") 
 which, when not assigned to a variable or used as a docstring within a function, class, or module, are effectively ignored by the interpreter. 
 This allows them to function as multi-line comments.
 """
@@ -35,7 +35,7 @@ import keyword
 print("Python keywords: ", keyword.kwlist)
 
 #to run this code, save it in a file named first.py and run it using the command: ✅
-# python 1_first.py
+# python 1_basics.py
 
 
 
