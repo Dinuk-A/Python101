@@ -43,5 +43,45 @@ for i in range(5):
         pass   # do nothing
     else:
         print(i)
+        
+        
+# WHILE LOOPS ARE EXPLAINED IN DAY 1 too> day1/4_conditions_if_while.py 
+
+# ex 1 basic while loop
+count = 0
+while count < 5:
+    print(count)   # 0 1 2 3 4
+    count += 1
+
+# ex 2 using break
+count = 0
+while True:
+    print(count)
+    count += 1
+    if count == 5:
+        break   # exit loop when count reaches 5
+
+# ex 3 using continue
+count = 0
+while count < 5:
+    count += 1
+    if count == 3:
+        continue   # skip printing 3
+    print(count)   # prints 1, 2, 4, 5
+
+# ex 4 using else with while
+count = 0
+while count < 3:
+    print(count)
+    count += 1
+else:
+    print("Loop completed normally")  # runs only if loop was not broken
+
+# ex 5 looping until user stops
+user_input = ""
+while user_input.lower() != "quit":
+    user_input = input("Type 'quit' to exit: ")
+    print("You typed:", user_input)
+
 
 # python day2/6_for.py
