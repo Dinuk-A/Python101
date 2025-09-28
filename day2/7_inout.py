@@ -20,11 +20,27 @@
 #output by print
 #also discussed in day1 > 5_string_methods  ✅
 
-#placeholders with .format ✅
+#placeholders with .format() ✅
 a = 123
 b= "cat"
 print('value of a is {} and b is {}'.format(a,b))
-print('value of a is {} and b is {}'.format(b,a))
+print('value of b is {} and a is {}'.format(b,a))
+
+#can have named parameters too
+print('i have a {}, its a {x}'.format('vehicle',x='van'))
+
+#ex 2:
+qty = 3
+price = 55
+item = 'soap'
+
+print('you need to pay {} dollars for {} items of {}'.format(price,qty,item))
+
+#use index numbers as placeholders for better safety
+print('you need to pay {2} dollars for {1} items of {0}'.format(item,qty,price)) 
+
+
+
 
 #print sevaral vars ✅
 name = "cat"
