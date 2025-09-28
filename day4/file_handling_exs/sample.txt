@@ -1,0 +1,7 @@
+this is a sample file for python file handling
+
+abc
+123
+15.55
+
+i love python
