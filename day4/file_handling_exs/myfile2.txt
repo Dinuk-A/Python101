@@ -1,1 +1,3 @@
-previous content deleted, overwritten by python
+previous content deleted, overwritten by pythonprevious content deleted
+overwritten by python
+using writelines() method

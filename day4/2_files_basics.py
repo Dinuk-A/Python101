@@ -1,5 +1,5 @@
 #major function of working with python file handling is 'open()' ✅✅✅
-#it gives a special file handler to work with opened file
+#it gives a special file handler (aka file object) to work with opened file 
 
 file = open('file_handling_exs\\sample.txt','rt')
 content1 = file.read()
@@ -40,13 +40,23 @@ f.seek(0)
 print('************reading only line by line************')
 print(f.readline())
 print(f.readline())
-f.seek(0)     
+f.seek(0)    
+
+#read the lines and output as a list
+print('************reading lines as a list************')
+print(f.readlines()) 
 
 #looping through file
 print("************')looping through file************')")
 for x in f:
     print(x)
 f.close()
+
+#get the file name, mode
+print('************file name and mode************')
+print(f.name)
+print(f.mode)
+print(f.closed)   #check if file is closed or not, returns True/False
 
 # append ✅✅✅
 
@@ -56,13 +66,15 @@ file2.write('now file has new content, added by python')
 
 #to add to a new line using '\n' or '\t'
 file2.write('\nnow file has a new line, added by python')
-
 file2.close()
 
 # overwrite ✅✅✅
 file2 = open('file_handling_exs\\myfile2.txt','w')
 file2.write('previous content deleted, overwritten by python')
 
+# write multiple lines at once using writelines()
+file2.writelines(['previous content deleted\n', 'overwritten by python\n', 'using writelines() method'])
+file2.close()
 
 # create ✅✅✅
 try:
