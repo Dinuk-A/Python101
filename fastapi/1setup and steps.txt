@@ -1,0 +1,15 @@
+1
+pip install fastapi
+pip install uvicorn  
+
+uvicorn is for server of fastapi
+
+2
+create a new folder>>> main.py
+
+3
+import and create an APP + define root directory
+
+4
+in console, in the fastapi folder > uvicorn main:app --reload
+ (file name:app name,,, --reload to auto refresh server when we did a change in code)
