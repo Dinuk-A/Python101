@@ -44,4 +44,29 @@ def get_user_by_id(user_id: int):
         return users[user_id]
     return {"error": "User not found"}
 
+# multiple path params example ✅
+users2 = [
+    {"id": 0, "name": "Alice", "orders": ["Book", "Pen"]},
+    {"id": 1, "name": "Bob", "orders": ["Laptop"]},
+    {"id": 2, "name": "Charlie", "orders": ["Notebook", "Pencil", "Eraser"]}
+]
+
+@app.get("/userorder/{uid}/order/{ord_id}")
+def get_user_and_order(uid: int, ord_id:int):
+    
+    #first validate user ids
+    if 0 <= uid < len(users2):        
+        user = users2[uid]        
+        #then validate orders
+        if 0<= ord_id < len(user["orders"] ):
+            return {"username" : user["name"], "order": user["orders"][ord_id] }        
+        else: 
+            return {"error":"order not found"}               
+    else:
+        return {"error":"user not found"}
+# test in browser >> http://127.0.0.1:8000/userorder/1/order/0
+
+# query param basic
+
+
 
