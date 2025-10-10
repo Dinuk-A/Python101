@@ -34,13 +34,12 @@ qty = 3
 price = 55
 item = 'soap'
 
-print('you need to pay {} dollars for {} items of {}'.format(price,qty,item))
+# also we can use number formattings inside {}s ✅
+print('you need to pay {:.2f} dollars for {} items of {}'.format(price,qty,item))
+#2f === 2 decimal places, 0f === rounded to complete numbers without decimals
 
 #use index numbers as placeholders for better safety
 print('you need to pay {2} dollars for {1} items of {0}'.format(item,qty,price)) 
-
-
-
 
 #print sevaral vars ✅
 name = "cat"
@@ -54,6 +53,14 @@ print(-123.0,name,25*3,age, sep="--")
 #end = what gets printed at the end of the output. ✅
 #by default its a new line( \n) , using this will print the next print in same line
 print(-123.0,name,25*3,age, sep="--",end="$")
+
+#more string formatters ✅
+#padding✅
+ur_name = "Dinuka"
+print('hello {:*<15} welcome'.format(ur_name))
+print('hello {:*>15} welcome'.format(ur_name))
+print('hello {:*^15} welcome'.format(ur_name))
+#also can be used without any symbol. so an empty space will be added
 
 
 # python 7_inout.py
