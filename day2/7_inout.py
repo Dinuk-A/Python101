@@ -65,15 +65,3 @@ print('hello {:*^15} welcome'.format(ur_name))
 
 # python 7_inout.py
 
-
-
-
-
-
-
-
-
-
-
-
-#python 7_inout.py
