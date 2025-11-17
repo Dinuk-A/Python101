@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from typing import Optional
 
-from lessons.lesson1_basic_get import router as basic_get_router
-from lessons.lesson2_path_params import router as path_param_router
-from lessons.lesson3_query_params import router as query_param_router
-from lessons.lesson4_post_basics import router as post_router  
+from lessons.l1_basic_get import router as basic_get_router # type: ignore
+from lessons.l2_path_params import router as path_param_router # type: ignore
+from lessons.l3_query_params import router as query_param_router # type: ignore
+from lessons.l4_post_basics import router as post_router   # type: ignore
 
 app = FastAPI(title="FastAPI Learning Project")
 
