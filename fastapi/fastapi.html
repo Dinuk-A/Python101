@@ -1,11 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FastAPI lessons</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        .lesson-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .lesson-menu,
+        .lessons-container {
+            border: 2px solid green;
+            padding: 10px;
+        }
+
+        .lesson-menu button {
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #1a1a1a;
+            color: #00ff9d;
+            border: 1px solid #00cc7a;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .lesson-menu button:hover {
+            background-color: #00cc7a;
+            color: black;
+        }
+
+        .lesson {
+            border-top: 2px solid gold;
+            border-bottom: 2px solid gold;
+            padding: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: stretch;
+        }
+
+               .lesson-left {
+            flex: 0 0 60%;
+            padding: 12px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 255, 157, 0.1);
+        }
+
+        .lesson-spacer {
+            flex: 0 0 5%;
+            border-left: 2px solid #333;
+            border-right: 2px solid #333;
+            margin: 0px;
+
+        }
+
+        .lesson-right {
+            flex: 0 0 35%;
+            padding: 12px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 204, 122, 0.1);
+        }
+    </style>
+
 </head>
+
 <body style="background-color: black; color: whitesmoke;">
-    <h1>sample text</h1>
+
+    <!-- main heading -->
+    <div
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <h1 style="color: gold; border-bottom: 2px solid darkred;">A sample UI for visually learn and practice Python
+            FastAPI features</h1>
+    </div>
+
+    <!-- menu -->
+    <div class="lesson-menu">
+        <button type="button" onclick="scrollToId('get-basic')">Basic GET</button>
+        <button type="button" onclick="scrollToId('get-path')">GET + Path Params</button>
+        <button type="button" onclick="scrollToId('get-query')">GET + Query Params</button>
+        <button type="button" onclick="scrollToId('post')">POST</button>
+        <button type="button" onclick="scrollToId('put-patch')">PUT / PATCH</button>
+        <button type="button" onclick="scrollToId('delete')">DELETE</button>
+    </div>
+
+    <!-- lessons -->
+    <div class="lessons-container" style="margin-top: 20px; border: none; padding: 0px;">
+
+        <!-- Basic GET -->
+        <section id="get-basic" class="lesson">
+
+            <div class="lesson-left">
+                <h3>Explanation</h3>
+                <p>
+                    This section explains how a basic GET request works in FastAPI.
+                    It fetches data from the server without sending any parameters.
+                </p>
+                <p>
+                    Example endpoint: <code>GET /person/all</code>
+                </p>
+            </div>
+
+            <div class="lesson-spacer"></div> 
+
+            <div class="lesson-right">
+                <h3>Try It</h3>
+                <!-- <p>Click the button below to fetch all users:</p>
+                <button type="button" onclick="fetchUsers()">Load Users</button>
+                <div id="result-basic" style="margin-top: 10px; font-size: 0.9em; color: #00ff9d;"></div> -->
+            </div>
+        </section>
+
+    </div>
+
+    <!-- js parts -->
+    <script>
+        function scrollToId(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
 </body>
+
 </html>
