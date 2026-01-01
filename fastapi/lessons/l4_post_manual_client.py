@@ -39,5 +39,7 @@ if __name__ == "__main__":
     get_all_users()
         
 # to run this file > >> python lessons\l4_post_manual_client.py
+# also uvicorn has to be activated (uvicorn main:app --reload)
+
     
     

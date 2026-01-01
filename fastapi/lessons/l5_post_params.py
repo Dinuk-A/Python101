@@ -26,4 +26,5 @@ if __name__ == "__main__":
     get_all_users()
     
 #to run this > >> python lessons\l5_post_params.py
+# also uvicorn has to be activated (uvicorn main:app --reload)
     
