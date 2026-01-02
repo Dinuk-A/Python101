@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI lessons</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        .lesson-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .lesson-menu,
+        .lessons-container {
+            border: 2px solid green;
+            padding: 10px;
+        }
+
+        .lesson-menu button {
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #1a1a1a;
+            color: #00ff9d;
+            border: 1px solid #00cc7a;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .lesson-menu button:hover {
+            background-color: #00cc7a;
+            color: black;
+        }
+
+        .lesson {
+            border-top: 2px solid gold;
+            border-bottom: 2px solid gold;
+            padding: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .lesson-left {
+            flex: 0 0 60%;
+            padding: 12px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 255, 157, 0.1);
+        }
+
+        .lesson-spacer {
+            flex: 0 0 5%;
+            border-left: 2px solid #333;
+            border-right: 2px solid #333;
+            margin: 0px;
+
+        }
+
+        .lesson-right {
+            flex: 0 0 35%;
+            padding: 12px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 204, 122, 0.1);
+        }
+
+        /* Table styling */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .data-table th {
+            background-color: #0a0a0a;
+            color: #00ff9d;
+            font-weight: bold;
+        }
+
+        .data-table tr:hover {
+            background-color: #252525;
+        }
+
+        /* Action button */
+        .action-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #00cc7a;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: #00ff9d;
+        }
+
+        /* Request box */
+        .request-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: #0a0a0a;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .request-method {
+            padding: 4px 10px;
+            background-color: #00cc7a;
+            color: black;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .request-url {
+            color: #00ff9d;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        /* Response status */
+        .response-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background-color: #0a0a0a;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .status-code {
+            padding: 4px 10px;
+            background-color: #333;
+            border-radius: 4px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        .status-code.success {
+            background-color: #00cc7a;
+            color: black;
+        }
+
+        .status-text {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* Response box */
+        .response-box {
+            background-color: #0a0a0a;
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .response-pre {
+            margin: 0;
+            padding: 10px;
+            background-color: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #00ff9d;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: black; color: whitesmoke;">
+
+    <!-- main heading -->
+    <div
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <h1 style="color: gold; border-bottom: 2px solid darkred;">A sample UI for visually learn and practice Python
+            FastAPI features</h1>
+    </div>
+
+    <!-- menu -->
+    <div class="lesson-menu">
+        <button type="button" onclick="scrollToId('get-basic')">Basic GET</button>
+        <button type="button" onclick="scrollToId('get-path')">GET + Path Params</button>
+        <button type="button" onclick="scrollToId('get-query')">GET + Query Params</button>
+        <button type="button" onclick="scrollToId('post')">POST</button>
+        <button type="button" onclick="scrollToId('put-patch')">PUT / PATCH</button>
+        <button type="button" onclick="scrollToId('delete')">DELETE</button>
+    </div>
+
+    <!-- lessons -->
+    <div class="lessons-container" style="margin-top: 20px; border: none; padding: 0px;">
+
+        <!-- Basic GET -->
+        <section id="get-basic" class="lesson">
+
+            <!-- left - real data + buttons -->
+            <div class="lesson-left">
+                <h3 style="color: #00ff9d; margin-top: 0;"> Available Data</h3>
+
+                <!-- Mock database table -->
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>john@example.com</td>
+                            <td>28</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jane Smith</td>
+                            <td>jane@example.com</td>
+                            <td>34</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Bob Wilson</td>
+                            <td>bob@example.com</td>
+                            <td>45</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Alice Brown</td>
+                            <td>alice@example.com</td>
+                            <td>29</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 20px;">
+                    <button class="action-btn" onclick="fetchAllUsers()"> GET All Users</button>
+                </div>
+            </div>
+
+            <!-- spacer -->
+            <div class="lesson-spacer"></div>
+
+            <!-- right - results -->
+            <div class="lesson-right">
+                <h3 style="color: #00cc7a; margin-top: 0;">Request & Response</h3>
+
+                <!-- Request details -->
+                <div class="request-box">
+                    <div class="request-method">GET</div>
+                    <div class="request-url" id="request-url">Waiting for request...</div>
+                </div>
+
+                <!-- Response status -->
+                <div class="response-status" id="response-status">
+                    <span class="status-code" id="status-code">-</span>
+                    <span class="status-text" id="status-text">Not sent yet</span>
+                </div>
+
+                <!-- Response data -->
+                <div class="response-box">
+                    <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
+                    <pre id="response-data" class="response-pre">No data yet. Click the button to fetch!</pre>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- js parts -->
+    <script>
+
+        // fn to move to a section
+        function scrollToId(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        //fn to fetch and display all the users
+        async function fetchAllUsers() {
+
+            const responseDisplay = document.getElementById('response-data');
+
+            try {
+
+                const response = await fetch('http://localhost:8000/ui/users');
+                const convertedData = await response.json();
+                responseDisplay.textContent = JSON.stringify(convertedData, null, 2);
+            } catch (error) {
+                responseDisplay.textContent = `Error fetching data: ${error.message}`;
+                return;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

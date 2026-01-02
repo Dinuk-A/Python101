@@ -10,7 +10,7 @@ def test_path_param():
     order_data = {"id": 1, "item": "cat"}
     
     response = requests.post(
-        f"{BASE_URL}/users/1/orders",
+        f"{BASE_URL}/l5/users/1/orders",
         json=order_data
     )
     print(f"Response: {json.dumps(response.json(), indent=2)}\n")
@@ -18,7 +18,7 @@ def test_path_param():
 # fn to get all users (GET request) 
 def get_all_users():
     """Retrieve all users (GET request)"""
-    response = requests.get(f"{BASE_URL}/userorders/all")
+    response = requests.get(f"{BASE_URL}/l5/userorders/all")
     print(f"\n📋 All users:\n{json.dumps(response.json(), indent=2)}")
     
 if __name__ == "__main__":

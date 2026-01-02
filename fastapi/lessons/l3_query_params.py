@@ -22,7 +22,6 @@ books_db = [
     {"id": 14, "title": "Programming Ruby", "author": "Andrew Hunt"},
 ]
 
-
 @router.get("/books/")
 def searchBooks(author: Optional[str]=None,title: Optional[str]=None, limit: int = 3):
     

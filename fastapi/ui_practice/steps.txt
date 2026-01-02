@@ -1,0 +1,2 @@
+1. run uvicorn server 
+2. run the UI via live server or python -m http.server 8080
