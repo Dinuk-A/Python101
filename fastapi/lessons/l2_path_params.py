@@ -47,6 +47,7 @@ def get_user_and_order(uid: int, ord_id:int):
     if 0 <= uid < len(users2):        
         user = users2[uid]        
         #then validate orders
+        # small problem in this, if user has no orders, ord_id 0 will be invalid and give error indexError
         if 0<= ord_id < len(user["orders"] ):
             return {"username" : user["name"], "order": user["orders"][ord_id] }        
         else: 

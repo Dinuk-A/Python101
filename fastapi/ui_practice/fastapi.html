@@ -229,40 +229,41 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Age</th>
+                            <th>Roles</th>
+                            <th>Active</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
                             <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td>28</td>
+                            <td>admin, developer</td>
+                            <td>✅</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td>34</td>
+                            <td>manager, hr</td>
+                            <td>✅</td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Bob Wilson</td>
-                            <td>bob@example.com</td>
-                            <td>45</td>
+                            <td>developer</td>
+                            <td>❌</td>
                         </tr>
                         <tr>
                             <td>4</td>
                             <td>Alice Brown</td>
-                            <td>alice@example.com</td>
-                            <td>29</td>
+                            <td>admin, manager</td>
+                            <td>✅</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <div style="margin-top: 20px;">
                     <button class="action-btn" onclick="fetchAllUsers()"> GET All Users</button>
+                    <button class="action-btn" onclick="getSecondUserById()"> GET 2nd Users</button>
                 </div>
             </div>
 
@@ -287,7 +288,11 @@
 
                 <!-- Response data -->
                 <div class="response-box">
-                    <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
+                    <div style="display: flex; flex-direction: column;">
+                        <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
+                        <p>200</p>
+                    </div>
+
                     <pre id="response-data" class="response-pre">No data yet. Click the button to fetch!</pre>
                 </div>
             </div>
@@ -304,14 +309,27 @@
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
+        // common place to show
+        var responseDisplay = document.getElementById('response-data');
+        var reqUrlDisplay = document.getElementById('request-url');
         //fn to fetch and display all the users
         async function fetchAllUsers() {
-
-            const responseDisplay = document.getElementById('response-data');
 
             try {
 
                 const response = await fetch('http://localhost:8000/ui/users');
+                const convertedData = await response.json();
+                responseDisplay.textContent = JSON.stringify(convertedData, null, 2);
+            } catch (error) {
+                responseDisplay.textContent = `Error fetching data: ${error.message}`;
+                return;
+            }
+        }
+
+        //fn to fetch users by ID
+        async function getSecondUserById() {
+            try {
+                const response = await fetch("http://localhost:8000/ui/users/2");
                 const convertedData = await response.json();
                 responseDisplay.textContent = JSON.stringify(convertedData, null, 2);
             } catch (error) {
