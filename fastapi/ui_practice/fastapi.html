@@ -147,30 +147,26 @@
             align-items: center;
             gap: 10px;
             padding: 8px;
-            background-color: #0a0a0a;
             border-radius: 6px;
             margin-bottom: 15px;
+            font-family: monospace;
+            font-size: 14px;
         }
 
-        .status-code {
-            padding: 4px 10px;
-            background-color: #333;
-            border-radius: 4px;
+        .success-status {
+            background-color: #00cc7a;
+            color: black;
             font-weight: bold;
             font-family: monospace;
         }
 
-        .status-code.success {
-            background-color: #00cc7a;
+        .error-status {
+            background-color: #ff4d4d;
             color: black;
+            font-weight: bold;
+            font-family: monospace;
         }
 
-        .status-text {
-            color: #888;
-            font-size: 13px;
-        }
-
-        /* Response box */
         .response-box {
             background-color: #0a0a0a;
             border-radius: 6px;
@@ -263,7 +259,8 @@
 
                 <div style="margin-top: 20px;">
                     <button class="action-btn" onclick="fetchAllUsers()"> GET All Users</button>
-                    <button class="action-btn" onclick="getSecondUserById()"> GET 2nd Users</button>
+                    <button class="action-btn" onclick="getSecondUserById()"> GET 2nd User</button>
+                    <button class="action-btn" onclick="getFirstUserRoles()"> GET 1st User Roles</button>
                 </div>
             </div>
 
@@ -276,21 +273,15 @@
 
                 <!-- Request details -->
                 <div class="request-box">
-                    <div class="request-method">GET</div>
+                    <div id="req-method" class="request-method">GET</div>
                     <div class="request-url" id="request-url">Waiting for request...</div>
-                </div>
-
-                <!-- Response status -->
-                <div class="response-status" id="response-status">
-                    <span class="status-code" id="status-code">-</span>
-                    <span class="status-text" id="status-text">Not sent yet</span>
                 </div>
 
                 <!-- Response data -->
                 <div class="response-box">
-                    <div style="display: flex; flex-direction: column;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
                         <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
-                        <p>200</p>
+                        <span class="response-status" id="res-status-code"></span>
                     </div>
 
                     <pre id="response-data" class="response-pre">No data yet. Click the button to fetch!</pre>
@@ -309,33 +300,61 @@
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // common place to show
+        // common DOM elements to show reults
+
+        var reqMethodDisplay = document.getElementById('req-method');
+        var requestUrlDisplay = document.getElementById('request-url');
         var responseDisplay = document.getElementById('response-data');
         var reqUrlDisplay = document.getElementById('request-url');
-        //fn to fetch and display all the users
-        async function fetchAllUsers() {
+        var responsestatusCodeDisplay = document.getElementById('res-status-code');
+
+        //common fn for all GETs (basic, PATH, QUERY)
+        async function commonGet(url, methodText) {
+
+            const response = await fetch(url);
+            const convertedData = await response.json();
 
             try {
 
-                const response = await fetch('http://localhost:8000/ui/users');
-                const convertedData = await response.json();
+                reqMethodDisplay.textContent = methodText;
+                reqUrlDisplay.textContent = url;
                 responseDisplay.textContent = JSON.stringify(convertedData, null, 2);
+                responsestatusCodeDisplay.textContent = response.status;
+
+                if (response.status === 200) {
+                    responsestatusCodeDisplay.className = 'response-status success-status';
+                } else {
+                    responsestatusCodeDisplay.className = 'response-status error-status';
+                }
+
             } catch (error) {
                 responseDisplay.textContent = `Error fetching data: ${error.message}`;
                 return;
             }
         }
 
+        // BASIC GET
+        //fn to fetch and display all the users
+        async function fetchAllUsers() {
+
+            commonGet('http://localhost:8000/ui/users', 'GET');
+
+        }
+
+        // SINGLE PATH PARAM FETCH
         //fn to fetch users by ID
         async function getSecondUserById() {
-            try {
-                const response = await fetch("http://localhost:8000/ui/users/2");
-                const convertedData = await response.json();
-                responseDisplay.textContent = JSON.stringify(convertedData, null, 2);
-            } catch (error) {
-                responseDisplay.textContent = `Error fetching data: ${error.message}`;
-                return;
-            }
+
+            commonGet('http://localhost:8000/ui/user/2', 'GET + Path');
+
+        }
+
+        //MULTI PATH PARAMS
+        //get 1st user's roles
+        async function getFirstUserRoles() {
+
+            commonGet('http://localhost:8000/ui/user/1/roles', 'GET + Multi Path');
+
         }
 
     </script>
