@@ -257,10 +257,15 @@
                     </tbody>
                 </table>
 
-                <div style="margin-top: 20px;">
+                <div style="margin-top: 20px; ">
                     <button class="action-btn" onclick="fetchAllUsers()"> GET All Users</button>
                     <button class="action-btn" onclick="getSecondUserById()"> GET 2nd User</button>
                     <button class="action-btn" onclick="getFirstUserRoles()"> GET 1st User Roles</button>
+                    <button class="action-btn" onclick="getAllDevs()"> GET Developers</button>
+                    <button class="action-btn" onclick="getAllAdmins()"> GET Admins</button>
+                    <button class="action-btn" onclick="getActiveDevs()"> GET Active Developers</button>
+                    <!-- not really practical. just to show combined path + query -->
+                    <button class="action-btn" onclick="getUsersByCombinedEx()"> GET Combined Ex</button>
                 </div>
             </div>
 
@@ -301,14 +306,13 @@
         }
 
         // common DOM elements to show reults
-
         var reqMethodDisplay = document.getElementById('req-method');
         var requestUrlDisplay = document.getElementById('request-url');
         var responseDisplay = document.getElementById('response-data');
         var reqUrlDisplay = document.getElementById('request-url');
         var responsestatusCodeDisplay = document.getElementById('res-status-code');
 
-        //common fn for all GETs (basic, PATH, QUERY)
+        // common fn for all GETs (basic, PATH, QUERY)
         async function commonGet(url, methodText) {
 
             const response = await fetch(url);
@@ -341,7 +345,7 @@
 
         }
 
-        // SINGLE PATH PARAM FETCH
+        // SINGLE PATH PARAM 
         //fn to fetch users by ID
         async function getSecondUserById() {
 
@@ -349,13 +353,48 @@
 
         }
 
-        //MULTI PATH PARAMS
-        //get 1st user's roles
+        // MULTI PATH PARAMS
+        // fn to fetch 1st user's roles
         async function getFirstUserRoles() {
 
             commonGet('http://localhost:8000/ui/user/1/roles', 'GET + Multi Path');
 
         }
+
+        // SINGLE QUERY PARAM - 1
+        // fn to fetch users by role - 1(developers)
+        async function getAllDevs() {
+
+            commonGet('http://127.0.0.1:8000/ui/users/role/?roleName=Developer', 'GET + Query ex 1');
+
+
+        }
+
+        // SINGLE QUERY PARAM - 2
+        // fn to fetch users by role - 1(admins)
+        async function getAllAdmins() {
+
+            commonGet('http://127.0.0.1:8000/ui/users/role/?roleName=admin', 'GET + Query ex 2');
+
+        }
+
+        // MULTI PATH PARAMS
+        // fn to fetch active developers
+        async function getActiveDevs() {
+
+            commonGet('http://127.0.0.1:8000/ui/users/byrolenstatus/?roleName=developer&activeStatus=false',
+                'GET + Multi Query');
+
+        }
+
+        // COMBINED (PATH + QUERY)
+        // fn to fetch user by id + role , not really practical. just to show combined path + query example
+        async function getUsersByCombinedEx() {
+
+            commonGet('http://127.0.0.1:8000/ui/user/mult/3/?roleName=developer', 'GET + Path + Query');
+
+        }
+
 
     </script>
 

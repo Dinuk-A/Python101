@@ -30,13 +30,13 @@ users = [
     }
 ]
 
-# for basic GET
+# for basic GET ✅
 @router.get("/ui/users")
 def showAllUsers():
     
     return {"users": users}
 
-# GET + path param
+# GET + path param ✅
 @router.get("/ui/user/{emp_id}")
 def getUserByEmpId(emp_id:int):
 
@@ -45,7 +45,7 @@ def getUserByEmpId(emp_id:int):
     else:
         return{"user": users[emp_id-1]}
 
-# GET + multi path param
+# GET + multi path param ✅
 @router.get("/ui/user/{emp_id}/roles")
 def getUserRoles(emp_id:int):
     
@@ -57,7 +57,7 @@ def getUserRoles(emp_id:int):
     else:
         return{"roles": users[emp_id-1]["roles"]}
     
-# GET + query param
+# GET + query param ✅
 @router.get("/ui/users/role/")
 def getUsersByRole(roleName: str):
 
@@ -65,9 +65,9 @@ def getUsersByRole(roleName: str):
 
     return {"users by role" :filteredUsers }
     
-# GET + multi query param
-# http://127.0.0.1:8000/ui/users/?roleName=developer&activeStatus=false
-@router.get("/ui/users/")
+# GET + multi query param ✅
+# http://127.0.0.1:8000/ui/users/byrolenstatus/?roleName=developer&activeStatus=false
+@router.get("/ui/users/byrolenstatus/")
 def getUsersByRoleAndStatus(roleName: str, activeStatus: bool):
 
     filteredUsers = [
@@ -78,10 +78,10 @@ def getUsersByRoleAndStatus(roleName: str, activeStatus: bool):
 
     return {"results": filteredUsers}
 
-# GET + path + query (combined)
+# GET + path + query (combined) ✅
 @router.get("/ui/user/mult/{emp_id}/")
 # http://127.0.0.1:8000/ui/user/mult/3/?roleName=developer
-def getUserCombineEx(emp_id: int, roleName: str):
+def getUserCombined(emp_id: int, roleName: str):
 
     if 0 < emp_id and emp_id < len(users):
 
