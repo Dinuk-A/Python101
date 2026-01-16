@@ -201,9 +201,7 @@
 
     <!-- menu -->
     <div class="lesson-menu">
-        <button type="button" onclick="scrollToId('get-basic')">Basic GET</button>
-        <button type="button" onclick="scrollToId('get-path')">GET + Path Params</button>
-        <button type="button" onclick="scrollToId('get-query')">GET + Query Params</button>
+        <button type="button" onclick="scrollToId('get')">Basic GET</button>
         <button type="button" onclick="scrollToId('post')">POST</button>
         <button type="button" onclick="scrollToId('put-patch')">PUT / PATCH</button>
         <button type="button" onclick="scrollToId('delete')">DELETE</button>
@@ -212,8 +210,8 @@
     <!-- lessons -->
     <div class="lessons-container" style="margin-top: 20px; border: none; padding: 0px;">
 
-        <!-- Basic GET -->
-        <section id="get-basic" class="lesson">
+        <!-- GET -->
+        <section id="get" class="lesson">
 
             <!-- left - real data + buttons -->
             <div class="lesson-left">
@@ -293,6 +291,45 @@
                 </div>
             </div>
 
+        </section>
+
+        <!-- POST -->
+        <section id="post">
+
+            <!-- left - real data + buttons -->
+            <div class="lesson-left">
+
+                <input type="text" id="random-input">
+
+                <div style="margin-top: 20px; ">
+                    <button class="action-btn" onclick="addRandomThing()">Add a Thing</button>
+                </div>
+
+            </div>
+
+            <!-- spacer -->
+            <div class="lesson-spacer"></div>
+
+            <!-- right - results -->
+            <div class="lesson-right">
+                <h3 style="color: #00cc7a; margin-top: 0;">Request & Response</h3>
+
+                <!-- Request details -->
+                <div class="request-box">
+                    <div id="req-method" class="request-method">POST</div>
+                    <div class="request-url" id="request-url">Waiting for request...</div>
+                </div>
+
+                <!-- Response data -->
+                <div class="response-box">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
+                        <span class="response-status" id="res-status-code"></span>
+                    </div>
+
+                    <pre id="response-data" class="response-pre">No data yet. Click the button to fetch!</pre>
+                </div>
+            </div>
         </section>
 
     </div>
@@ -395,6 +432,21 @@
 
         }
 
+        //POST without validation
+        async function addRandomThing() {
+            const randomValue = document.getElementById("random-input").value;
+
+            try {
+                const response = await fetch("http://localhost:8000/ui/add/random", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: randomValue
+                })
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+        }
 
     </script>
 

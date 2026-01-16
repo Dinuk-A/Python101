@@ -13,6 +13,7 @@ from ui_practice.ui_script import router as ui_router
 
 app = FastAPI(title="FastAPI Learning Project")
 
+# for UI lessons
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Allow all origins (for development)

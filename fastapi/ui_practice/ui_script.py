@@ -1,8 +1,10 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
 from typing import Optional
 
 router = APIRouter()
 
+# mock data for GET lessons
 users = [
     {
         "emp_id": 1, 
@@ -97,8 +99,20 @@ def getUserCombined(emp_id: int, roleName: str):
     else:
         return{"results": "user not found for this emp id"}
 
+# ================POST =====================
+
+# mock data for POST lessons
+randomThings = ["cat",150.00,True,"aAA"]
+names = ["tom","batman"]
+
+# data models for POST lessons
 
 
-
+# basic POST without any data validations
+@router.post("/ui/add/random")
+def add_randomThing(thing):
+    randomThings.append(thing)
+    print(f'added: {thing}')
+    return {"message":"random bs added successfully","added":thing}
 
 
