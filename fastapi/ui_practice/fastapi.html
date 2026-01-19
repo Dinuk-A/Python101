@@ -293,44 +293,105 @@
 
         </section>
 
-        <!-- POST ✅-->
-        <section id="post">
+    <!-- POST ✅-->
+<section id="post" class="lesson">
 
-            <!-- left - real data + buttons -->
-            <div class="lesson-left">
+    <!-- left - real data + buttons -->
+    <div class="lesson-left">
+        <h3 style="color: #00ff9d; margin-top: 0;">Available Data</h3>
 
-                <input type="text" id="random-input">
-
-                <div style="margin-top: 20px; ">
-                    <button class="action-btn" onclick="addRandomThing()">Add a Thing</button>
-                </div>
-
-            </div>
-
-            <!-- spacer -->
-            <div class="lesson-spacer"></div>
-
-            <!-- right - results -->
-            <div class="lesson-right">
-                <h3 style="color: #00cc7a; margin-top: 0;">Request & Response</h3>
-
-                <!-- Request details -->
-                <div class="request-box">
-                    <div id="req-method" class="request-method">POST</div>
-                    <div class="request-url" id="request-url">Waiting for request...</div>
-                </div>
-
-                <!-- Response data -->
-                <div class="response-box">
-                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
-                        <span class="response-status" id="res-status-code"></span>
-                    </div>
-
-                    <pre id="response-data" class="response-pre">No data yet. Click the button to fetch!</pre>
+        <!-- Random Things Row -->
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+            <!-- Current Array -->
+            <div style="flex: 1;">
+                <h4 style="color: #00cc7a; margin: 0 0 8px 0; font-size: 14px;">Random Things:</h4>
+                <div style="padding: 12px; background: rgba(0, 255, 157, 0.05); border-radius: 6px; border: 1px solid rgba(0, 255, 157, 0.2);">
+                    <code style="color: #00ff9d; font-size: 13px;">["cat", 150.00, True, "abCD"]</code>
                 </div>
             </div>
-        </section>
+
+            <!-- Input -->
+            <div style="flex: 1;">
+                <label style="display: block; margin-bottom: 8px; color: #00ff9d; font-size: 14px;">
+                    Add (any type):
+                </label>
+                <input type="text" id="random-input" placeholder="Enter anything..." 
+                       style="width: 100%; padding: 10px; background: rgba(0, 255, 157, 0.1); 
+                              border: 1px solid #00ff9d; border-radius: 4px; color: #fff; font-size: 14px;">
+            </div>
+
+            <!-- Button -->
+            <div style="align-self: flex-end;">
+                <button class="action-btn" onclick="addRandomThing()">POST Random</button>
+            </div>
+        </div>
+
+        <!-- Names Array Row -->
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+            <!-- Current Array -->
+            <div style="flex: 1;">
+                <h4 style="color: #00cc7a; margin: 0 0 8px 0; font-size: 14px;">Names Array:</h4>
+                <div style="padding: 12px; background: rgba(0, 255, 157, 0.05); border-radius: 6px; border: 1px solid rgba(0, 255, 157, 0.2);">
+                    <code style="color: #00ff9d; font-size: 13px;">["tom", "batman"]</code>
+                </div>
+            </div>
+
+            <!-- Input -->
+            <div style="flex: 1;">
+                <label style="display: block; margin-bottom: 8px; color: #00ff9d; font-size: 14px;">
+                    Add Name (string):
+                </label>
+                <input type="text" id="name-input" placeholder="Enter a name..." 
+                       style="width: 100%; padding: 10px; background: rgba(0, 255, 157, 0.1); 
+                              border: 1px solid #00ff9d; border-radius: 4px; color: #fff; font-size: 14px;">
+            </div>
+
+            <!-- Button -->
+            <div style="align-self: flex-end;">
+                <button class="action-btn" onclick="addName()">POST Name</button>
+            </div>
+        </div>
+
+        <!-- GET Buttons -->
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(0, 255, 157, 0.2);">
+            <h4 style="color: #00cc7a; margin: 0 0 12px 0; font-size: 14px;">Verify Arrays:</h4>
+            <button class="action-btn" onclick="getRandomThings()">GET Random Things</button>
+            <button class="action-btn" onclick="getNames()">GET Names</button>
+        </div>
+    </div>
+
+    <!-- spacer -->
+    <div class="lesson-spacer"></div>
+
+    <!-- right - results -->
+    <div class="lesson-right">
+        <h3 style="color: #00cc7a; margin-top: 0;">Request & Response</h3>
+
+        <!-- Request details -->
+        <div class="request-box">
+            <div id="post-req-method" class="request-method">POST</div>
+            <div class="request-url" id="post-request-url">Waiting for request...</div>
+        </div>
+
+        <!-- Request Body Preview -->
+        <div class="request-box" style="margin-top: 15px;">
+            <h4 style="margin: 0 0 10px 0; color: #00ff9d; font-size: 14px;">Request Body:</h4>
+            <pre id="post-request-body" class="response-pre" 
+                 style="background: rgba(0, 255, 157, 0.05);">No request sent yet</pre>
+        </div>
+
+        <!-- Response data -->
+        <div class="response-box">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
+                <span class="response-status" id="post-res-status-code"></span>
+            </div>
+
+            <pre id="post-response-data" class="response-pre">No data yet. Click a button to send!</pre>
+        </div>
+    </div>
+
+</section>
 
     </div>
 
@@ -432,16 +493,39 @@
 
         }
 
-        //POST without validation
-        async function addRandomThing() {
+        //   *********************** POST section ***********************
 
-            const randomValue = document.getElementById("random-input").value;
+        // COMMON FN FOR BASIC POST
+        async function commonBaiscPost(inputID, endpoint, jsonFieldName) {
 
+            const enteredValue = document.getElementById(inputID).value;
             try {
-                const response = await fetch("http://localhost:8000/ui/add/random", {
+                const response = await fetch("http://localhost:8000/ui/post/" + endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ value: randomValue })
+                    body: JSON.stringify({ [jsonFieldName]: enteredValue })
+                })
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        //POST any type (for random things )      
+        async function addRandomThing() {
+            commonBaiscPost("random-input", "random", "value");
+        }
+
+        //POST strings only (for names )
+        async function addNames() {
+
+            const enteredName = document.getElementById("name-input").value;
+
+            try {
+                const response = await fetch("http://localhost:8000/ui/post/names", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nameVal: enteredName })
+
                 })
             } catch (error) {
                 console.error('Error:', error);

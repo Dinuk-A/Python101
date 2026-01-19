@@ -104,23 +104,39 @@ def getUserCombined(emp_id: int, roleName: str):
 # mock data for POST lessons ✅
 randomThings = ["cat",150.00,True,"abCD"]
 
-names = ["tom","batman"]
+namesArray = ["tom","batman"]
 
 # data models for POST lessons ✅
-# for random things array
+
+# for random things array - this will accept any type
 class RandomItem(BaseModel):
     value:str | int | bool | float
+ 
+# for names array
+class Name(BaseModel):
+    nameVal:str
 
 # basic POST (accept any type) ✅
-@router.post("/ui/add/random")
+@router.post("/ui/post/random")
 def add_randomThing(thing: RandomItem):
     randomThings.append(thing.value)
     print(f'added: {thing}')
     return {"message":"random bs added successfully","added":thing}
 
+# POST only strings are accepted
+@router.post("/ui/post/names")
+def addNames(name: Name):
+    namesArray.append(name.nameVal)
+    return {"message":"name added successfully","added":name}
+
 # simple GET for show random things array (just to show results of above POST)
 @router.get("/ui/postexm/get/rndmthngs")
 def getRandomThings():
     return {"random things":randomThings}
+
+# simple GET for show names array (just to show results of above POST)
+@router.get("/ui/postexm/get/names")
+def getNames():
+    return {"names":namesArray}
 
 
