@@ -124,7 +124,7 @@ def add_randomThing(thing: RandomItem):
     return {"message":"random bs added successfully","added":thing}
 
 # POST only strings are accepted
-@router.post("/ui/post/names")
+@router.post("/ui/post/name")
 def addNames(name: Name):
     namesArray.append(name.nameVal)
     return {"message":"name added successfully","added":name}

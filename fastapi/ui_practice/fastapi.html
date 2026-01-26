@@ -215,7 +215,7 @@
 
             <!-- left - real data + buttons -->
             <div class="lesson-left">
-                <h3 style="color: #00ff9d; margin-top: 0;"> Available Data</h3>
+                <h3 style="color: #00ff9d; margin-top: 0;"> GET</h3>
 
                 <!-- Mock database table -->
                 <table class="data-table">
@@ -276,8 +276,8 @@
 
                 <!-- Request details -->
                 <div class="request-box">
-                    <div id="req-method" class="request-method">GET</div>
-                    <div class="request-url" id="request-url">Waiting for request...</div>
+                    <div id="req-method-get" class="request-method">GET</div>
+                    <div class="request-url" id="request-url-get">Waiting for request...</div>
                 </div>
 
                 <!-- Response data -->
@@ -287,111 +287,114 @@
                         <span class="response-status" id="res-status-code"></span>
                     </div>
 
-                    <pre id="response-data" class="response-pre">No data yet. Click the button to fetch!</pre>
+                    <pre id="response-data-get" class="response-pre">No data yet. Click the button to fetch!</pre>
                 </div>
             </div>
 
         </section>
 
-    <!-- POST ✅-->
-<section id="post" class="lesson">
+        <!-- POST ✅-->
+        <section id="post" class="lesson">
 
-    <!-- left - real data + buttons -->
-    <div class="lesson-left">
-        <h3 style="color: #00ff9d; margin-top: 0;">Available Data</h3>
+            <!-- left - real data + buttons -->
+            <div class="lesson-left">
+                <h3 style="color: #00ff9d; margin-top: 0;">POST</h3>
 
-        <!-- Random Things Row -->
-        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <!-- Current Array -->
-            <div style="flex: 1;">
-                <h4 style="color: #00cc7a; margin: 0 0 8px 0; font-size: 14px;">Random Things:</h4>
-                <div style="padding: 12px; background: rgba(0, 255, 157, 0.05); border-radius: 6px; border: 1px solid rgba(0, 255, 157, 0.2);">
-                    <code style="color: #00ff9d; font-size: 13px;">["cat", 150.00, True, "abCD"]</code>
+                <!-- Random Things Row -->
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                    <!-- Current Array -->
+                    <div style="flex: 1;">
+                        <h4 style="color: #00cc7a; margin: 0 0 8px 0; font-size: 14px;">Random Things:</h4>
+                        <div
+                            style="padding: 12px; background: rgba(0, 255, 157, 0.05); border-radius: 6px; border: 1px solid rgba(0, 255, 157, 0.2);">
+                            <code style="color: #00ff9d; font-size: 13px;">["cat", 150.00, True, "abCD"]</code>
+                        </div>
+                    </div>
+
+                    <!-- Input -->
+                    <div style="flex: 1;">
+                        <label style="display: block; margin-bottom: 8px; color: #00ff9d; font-size: 14px;">
+                            Add (any type):
+                        </label>
+                        <input type="text" id="post-random-input" placeholder="Enter anything..." style="width: 100%; padding: 10px; background: rgba(0, 255, 157, 0.1); 
+                              border: 1px solid #00ff9d; border-radius: 4px; color: #fff; font-size: 14px;">
+                    </div>
+
+                    <!-- Button -->
+                    <div style="align-self: flex-end;">
+                        <button class="action-btn" onclick="addRandomThing()">POST Random</button>
+                    </div>
+                </div>
+
+                <!-- Names Array Row -->
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                    <!-- Current Array -->
+                    <div style="flex: 1;">
+                        <h4 style="color: #00cc7a; margin: 0 0 8px 0; font-size: 14px;">Names Array:</h4>
+                        <div
+                            style="padding: 12px; background: rgba(0, 255, 157, 0.05); border-radius: 6px; border: 1px solid rgba(0, 255, 157, 0.2);">
+                            <code style="color: #00ff9d; font-size: 13px;">["tom", "batman"]</code>
+                        </div>
+                    </div>
+
+                    <!-- Input -->
+                    <div style="flex: 1;">
+                        <label style="display: block; margin-bottom: 8px; color: #00ff9d; font-size: 14px;">
+                            Add Name (string):
+                        </label>
+                        <input type="text" id="post-name-input" placeholder="Enter a name..." style="width: 100%; padding: 10px; background: rgba(0, 255, 157, 0.1); 
+                              border: 1px solid #00ff9d; border-radius: 4px; color: #fff; font-size: 14px;">
+                    </div>
+
+                    <!-- Button -->
+                    <div style="align-self: flex-end;">
+                        <button class="action-btn" onclick="addName()">POST Name</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Input -->
-            <div style="flex: 1;">
-                <label style="display: block; margin-bottom: 8px; color: #00ff9d; font-size: 14px;">
-                    Add (any type):
-                </label>
-                <input type="text" id="random-input" placeholder="Enter anything..." 
-                       style="width: 100%; padding: 10px; background: rgba(0, 255, 157, 0.1); 
-                              border: 1px solid #00ff9d; border-radius: 4px; color: #fff; font-size: 14px;">
-            </div>
+            <!-- spacer -->
+            <div class="lesson-spacer"></div>
 
-            <!-- Button -->
-            <div style="align-self: flex-end;">
-                <button class="action-btn" onclick="addRandomThing()">POST Random</button>
-            </div>
-        </div>
+            <!-- right - results -->
+            <div class="lesson-right">
+                <h3 style="color: #00cc7a; margin-top: 0;">Request & Response</h3>
 
-        <!-- Names Array Row -->
-        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <!-- Current Array -->
-            <div style="flex: 1;">
-                <h4 style="color: #00cc7a; margin: 0 0 8px 0; font-size: 14px;">Names Array:</h4>
-                <div style="padding: 12px; background: rgba(0, 255, 157, 0.05); border-radius: 6px; border: 1px solid rgba(0, 255, 157, 0.2);">
-                    <code style="color: #00ff9d; font-size: 13px;">["tom", "batman"]</code>
+                <!-- Request details -->
+                <div class="request-box">
+                    <div id="post-req-method" class="request-method">POST</div>
+                    <div class="request-url" id="post-request-url">Waiting for request...</div>
+                </div>
+
+                <!-- Request Body Preview -->
+                <div class="request-box" style="margin-top: 15px;">
+                    <h4 style="margin: 0 0 10px 0; color: #00ff9d; font-size: 14px;">Request Body:</h4>
+                    <pre id="post-request-body" class="response-pre"
+                        style="background: rgba(0, 255, 157, 0.05);">No request sent yet</pre>
+                </div>
+
+                <!-- Response data -->
+                <div class="response-box">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
+                        <span class="response-status" id="post-res-status-code"></span>
+                    </div>
+
+                    <pre id="post-response-data" class="response-pre">No data yet. Click a button to send!</pre>
+                </div>
+
+                <!-- Final results -->
+                <div class="response-box" style="margin-top: 15px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Final Array:</h4>
+                    </div>
+
+                    <pre id="post-response-data-post-final-array-from-get"
+                        class="response-pre">No data yet. Click a button to send!</pre>
                 </div>
             </div>
 
-            <!-- Input -->
-            <div style="flex: 1;">
-                <label style="display: block; margin-bottom: 8px; color: #00ff9d; font-size: 14px;">
-                    Add Name (string):
-                </label>
-                <input type="text" id="name-input" placeholder="Enter a name..." 
-                       style="width: 100%; padding: 10px; background: rgba(0, 255, 157, 0.1); 
-                              border: 1px solid #00ff9d; border-radius: 4px; color: #fff; font-size: 14px;">
-            </div>
-
-            <!-- Button -->
-            <div style="align-self: flex-end;">
-                <button class="action-btn" onclick="addName()">POST Name</button>
-            </div>
-        </div>
-
-        <!-- GET Buttons -->
-        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(0, 255, 157, 0.2);">
-            <h4 style="color: #00cc7a; margin: 0 0 12px 0; font-size: 14px;">Verify Arrays:</h4>
-            <button class="action-btn" onclick="getRandomThings()">GET Random Things</button>
-            <button class="action-btn" onclick="getNames()">GET Names</button>
-        </div>
-    </div>
-
-    <!-- spacer -->
-    <div class="lesson-spacer"></div>
-
-    <!-- right - results -->
-    <div class="lesson-right">
-        <h3 style="color: #00cc7a; margin-top: 0;">Request & Response</h3>
-
-        <!-- Request details -->
-        <div class="request-box">
-            <div id="post-req-method" class="request-method">POST</div>
-            <div class="request-url" id="post-request-url">Waiting for request...</div>
-        </div>
-
-        <!-- Request Body Preview -->
-        <div class="request-box" style="margin-top: 15px;">
-            <h4 style="margin: 0 0 10px 0; color: #00ff9d; font-size: 14px;">Request Body:</h4>
-            <pre id="post-request-body" class="response-pre" 
-                 style="background: rgba(0, 255, 157, 0.05);">No request sent yet</pre>
-        </div>
-
-        <!-- Response data -->
-        <div class="response-box">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <h4 style="margin: 0 0 10px 0; color: #00ff9d;">Response Data:</h4>
-                <span class="response-status" id="post-res-status-code"></span>
-            </div>
-
-            <pre id="post-response-data" class="response-pre">No data yet. Click a button to send!</pre>
-        </div>
-    </div>
-
-</section>
+        </section>
 
     </div>
 
@@ -403,34 +406,35 @@
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // common DOM elements to show reults
-        var reqMethodDisplay = document.getElementById('req-method');
-        var requestUrlDisplay = document.getElementById('request-url');
-        var responseDisplay = document.getElementById('response-data');
-        var reqUrlDisplay = document.getElementById('request-url');
-        var responsestatusCodeDisplay = document.getElementById('res-status-code');
+        //  *********************** GET section ***********************
+
+        // common DOM elements to show reults for GETs
+        var reqMethodDisplayGet = document.getElementById('req-method-get');
+        var responseDisplayGet = document.getElementById('response-data-get');
+        var reqUrlDisplayGet = document.getElementById('request-url-get');
+        var responsestatusCodeDisplayGet = document.getElementById('res-status-code');
 
         // common fn for all GETs (basic, PATH, QUERY)
         async function commonGet(url, methodText) {
 
-            const response = await fetch(url);
-            const convertedData = await response.json();
-
             try {
 
-                reqMethodDisplay.textContent = methodText;
-                reqUrlDisplay.textContent = url;
-                responseDisplay.textContent = JSON.stringify(convertedData, null, 2);
-                responsestatusCodeDisplay.textContent = response.status;
+                const response = await fetch(url);
+                const convertedData = await response.json();
+
+                reqMethodDisplayGet.textContent = methodText;
+                reqUrlDisplayGet.textContent = url;
+                responseDisplayGet.textContent = JSON.stringify(convertedData, null, 2);
+                responsestatusCodeDisplayGet.textContent = response.status;
 
                 if (response.status === 200) {
-                    responsestatusCodeDisplay.className = 'response-status success-status';
+                    responsestatusCodeDisplayGet.className = 'response-status success-status';
                 } else {
-                    responsestatusCodeDisplay.className = 'response-status error-status';
+                    responsestatusCodeDisplayGet.className = 'response-status error-status';
                 }
 
             } catch (error) {
-                responseDisplay.textContent = `Error fetching data: ${error.message}`;
+                responseDisplayGet.textContent = `Error fetching data: ${error.message}`;
                 return;
             }
         }
@@ -495,38 +499,77 @@
 
         //   *********************** POST section ***********************
 
+        //common DOM elements to show reults for POSTs
+        var reqMethodDisplayPost = document.getElementById('post-req-method');
+        var reqUrlDisplayPost = document.getElementById('post-request-url');
+        var reqBodyDisplayPost = document.getElementById('post-request-body');
+        var responseStatusCodeDisplayPost = document.getElementById('post-res-status-code');
+        var responseDisplayPost = document.getElementById('post-response-data');
+        var finalArrayResultPost = document.getElementById('post-response-data-post-final-array-from-get');
+
         // COMMON FN FOR BASIC POST
         async function commonBaiscPost(inputID, endpoint, jsonFieldName) {
 
             const enteredValue = document.getElementById(inputID).value;
+
+            //this is for the main POST scenario
             try {
+
                 const response = await fetch("http://localhost:8000/ui/post/" + endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ [jsonFieldName]: enteredValue })
                 })
+
+                reqUrlDisplayPost.textContent = "http://localhost:8000/ui/post/" + endpoint;
+                reqBodyDisplayPost.textContent = JSON.stringify({ [jsonFieldName]: enteredValue }, null, 2);
+                responseStatusCodeDisplayPost.textContent = response.status;
+
+                const responseData = await response.json();
+                responseDisplayPost.textContent = JSON.stringify(responseData, null, 2);
+
+                if (response.status === 200) {
+                    responseStatusCodeDisplayPost.className = 'response-status success-status';
+                } else {
+                    responseStatusCodeDisplayPost.className = 'response-status error-status';
+                }
+
             } catch (error) {
+                reqBodyDisplayPost.textContent = `Error sending data: ${error.message}`;
                 console.error('Error:', error);
+                return;
             }
+
         }
 
         //POST any type (for random things )      
         async function addRandomThing() {
-            commonBaiscPost("random-input", "random", "value");
+            commonBaiscPost("post-random-input", "random", "value");
+
+            //this is to get the final updated array after POST (uses GET as same as before)
+            try {
+
+                const finalArrayResponse = await fetch("http://localhost:8000/ui/postexm/get/rndmthngs");
+                const convertedData = await finalArrayResponse.json();
+                finalArrayResultPost.textContent = JSON.stringify(convertedData, null, 2);
+
+            } catch (error) {
+                finalArrayResultPost.textContent = `Error fetching final array: ${error.message}`;
+                return;
+            }
         }
 
-        //POST strings only (for names )
-        async function addNames() {
+        //POST strings only (for names)
+        async function addName() {
 
-            const enteredName = document.getElementById("name-input").value;
+            commonBaiscPost("post-name-input", "name", "nameVal");
 
+            //this is to get the final updated array after POST
             try {
-                const response = await fetch("http://localhost:8000/ui/post/names", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nameVal: enteredName })
+                const finalArrayResponse = await fetch("http://localhost:8000/ui/postexm/get/names");
+                const convertedData = await finalArrayResponse.json();
+                finalArrayResultPost.textContent = JSON.stringify(convertedData, null, 2);
 
-                })
             } catch (error) {
                 console.error('Error:', error);
             }
