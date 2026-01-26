@@ -88,3 +88,5 @@ def add_order(user_id: int, order: Order):
 @router.get("/userorders/all")
 def getAllUserOrders():
     return user_orders
+
+# use >>> python l4_post_manual_client.py

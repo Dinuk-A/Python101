@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from pydantic import field_validator
 from typing import Optional
 
 router = APIRouter()
@@ -115,6 +116,17 @@ class RandomItem(BaseModel):
 # for names array
 class Name(BaseModel):
     nameVal:str
+
+#  JSON treats "45465" (with quotes) as a string and 45465 (without quotes) as a number.
+#  Since "45465" is technically a valid string, it passes Pydantic's str type check.
+#  We need extra validation to reject strings that contain only digits.
+
+    @field_validator('nameVal')
+    @classmethod
+    def name_must_not_be_numeric(cls, v):
+        if v.isdigit():
+            raise ValueError('nameVal must not be purely numeric')
+        return v
 
 # basic POST (accept any type) ✅
 @router.post("/ui/post/random")
